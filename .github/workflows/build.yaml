@@ -45,6 +45,8 @@ jobs:
           push: true
           tags: |
             ghcr.io/rjocoleman/bash-jq:latest
+          labels: |
+            org.opencontainers.image.source = "https://github.com/rjocoleman/bash-jq"
           platforms: ${{ matrix.platform }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
