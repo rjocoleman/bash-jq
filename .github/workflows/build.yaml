@@ -17,12 +17,6 @@ concurrency:
 jobs:
   build-bash-jq:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        platform:
-          - linux/amd64
-          - linux/arm64
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -47,6 +41,13 @@ jobs:
             ghcr.io/rjocoleman/bash-jq:latest
           labels: |
             org.opencontainers.image.source = "https://github.com/rjocoleman/bash-jq"
-          platforms: ${{ matrix.platform }}
+          platforms: >
+            linux/386,
+            linux/amd64,
+            linux/arm64,
+            linux/arm/v6,
+            linux/arm/v7,
+            linux/ppc64le,
+            linux/s390x
           cache-from: type=gha
           cache-to: type=gha,mode=max
